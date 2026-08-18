@@ -1,0 +1,497 @@
+﻿BLUEPRINT
+ APLIKASI PEMBELAJARAN QIRĀ'AH BERBASIS HTML5
+(EDISI ANTIGRAVITY PHYSICS)
+A. Arsitektur Inti & Mesin Fisika (Physics Engine)
+ Aplikasi ini menggunakan HTML5 sebagai fondasi utama dokumen. 
+Namun
+, DOM (Document Object Model) 
+akan
+ 
+diintegrasikan
+ 
+dengan
+ 
+mesin
+ 
+fisika
+ JavaScript 2D (
+seperti
+ Matter.js). 
+DOM to Physics:
+ 
+Setiap
+ tag HTML (
+teks
+, 
+gambar
+, 
+tombol
+) 
+diubah
+ 
+menjadi
+ 
+blok
+ 
+fisik
+ yang 
+memiliki
+ 
+massa
+ dan 
+gravitasi
+. 
+Ketika fungsi 
+Antigravity
+ diaktifkan, elemen-elemen ini akan kehilangan tumpuan statisnya.
+Interaksi
+ 
+Manipulatif
+:
+ 
+Pengguna
+ 
+dapat
+ 
+menyentuh
+, 
+melempar
+, 
+menggeser
+, dan 
+membenturkan
+ 
+elemen-elemen
+ 
+teks
+ Arab 
+tersebut
+ 
+secara
+ virtual di 
+layar
+.
+Penyimpanan
+ Data:
+ 
+Posisi
+ 
+terakhir
+ 
+susunan
+ kata 
+pengguna
+, 
+skor
+, dan 
+riwayat
+ 
+belajar
+ 
+disimpan
+ 
+secara
+ 
+lokal
+ 
+menggunakan
+ Web Storage, 
+sehingga
+ 
+tidak
+ 
+memerlukan
+ server 
+tambahan
+. 
+B. 
+Struktur
+ Laman Utama (The Drop Landing Page)
+Laman 
+utama
+ 
+dirancang
+ 
+sebagai
+ 
+ruang
+ 
+hampa
+ 
+gaya
+ 
+berat
+ yang 
+interaktif
+ 
+untuk
+ 
+memicu
+ 
+ketertarikan
+ 
+pengguna
+ 
+sejak
+ 
+awal
+ 
+aplikasi
+ 
+dibuka
+.
+Awal Muat (Loading):
+ Saat 
+pertama
+ kali 
+dibuka
+, 
+layar
+ 
+tampak
+ 
+seperti
+ 
+aplikasi
+ web pada 
+umumnya
+. 
+Judul "Qirā'ah Interaktif" dan menu utama berada di posisinya dengan rapi.
+Pemicu
+ 
+Gravitasi
+ (The Trigger):
+ 
+Terdapat
+ 
+sebuah
+ 
+tombol
+ 
+bertuliskan
+ "
+Aktifkan
+ Ruang 
+Belajar
+". 
+Saat ditekan, gravitasi bumi simulasi menyala, menjatuhkan seluruh elemen menu—termasuk blok teks visi, misi, dan tujuan aplikasi—ke dasar layar.
+Papan Profil Mengapung:
+ Blok profil penyusun aplikasi, 
+Muhammad Faisal Yahya Prabowo
+, dan dosen pengampu, 
+Ust. Assoc. Prof. Dr. Moh. Ismail, M.Pd.I
+, didesain layaknya lembaran foto polaroid fisik yang melayang perlahan jika disentuh. 
+Hal 
+ini
+ 
+memberikan
+ 
+estetika
+ visual yang 
+bernuansa
+ analog. 
+Navigasi
+ 
+Fisik
+:
+ 
+Untuk
+ 
+masuk
+ 
+ke
+ 
+modul
+ 
+pembelajaran
+, 
+pengguna
+ 
+harus
+ 
+melempar
+ 
+blok
+ menu "Modul" 
+ke
+ 
+arah
+ area target (
+sebuah
+ portal) di 
+sudut
+ 
+layar
+.
+C. Modul 
+Pembelajaran
+ 
+dengan
+ Antigravity Mechanics
+Modul 1: 
+Hujan
+ 
+Huruf
+ 
+Hijaiyah
+Konsep
+:
+ 
+Huruf-huruf
+ 
+hijaiyah
+ 
+divisualisasikan
+ 
+jatuh
+ 
+dari
+ 
+atas
+ 
+layar
+ 
+layaknya
+ 
+rintik
+ 
+hujan
+ 
+lambat
+ (low gravity).
+Interaksi
+:
+ 
+Pengguna
+ 
+dapat
+ 
+menumpuk
+ 
+balok-balok
+ 
+huruf
+ 
+tersebut
+. Jika 
+pengguna
+ 
+mengetuk
+ dua kali pada 
+sebuah
+ 
+balok
+ 
+huruf
+, 
+elemen
+ audio HTML5 
+akan
+ 
+memicu
+ 
+suara
+ 
+pelafalan
+ 
+makhraj
+ 
+secara
+ 
+mandiri
+ 
+tanpa
+ plugin 
+tambahan
+. 
+Elemen
+ 
+tersebut
+ juga 
+akan
+ 
+memancarkan
+ 
+animasi
+ 
+debu
+ 
+cahaya
+ yang 
+diproses
+ 
+melalui
+ 
+elemen
+ canvas. 
+Modul 2: Teks 
+Berpegas
+ (Elastic Read-Along)
+Konsep
+:
+ 
+Kalimat-kalimat
+ 
+qirā'ah
+ 
+disajikan
+, 
+namun
+ 
+setiap
+ kata 
+terhubung
+ 
+satu
+ 
+sama
+ lain 
+dengan
+ "
+pegas
+ virtual" (spring constraints).
+Interaksi:
+ Saat sebuah kata ditarik, kata lain di sekitarnya akan ikut tertarik dan bergoyang. Fitur penyorotan bacaan (highlighting) yang berjalan mengikuti audio akan tetap beroperasi. Jika pengguna kesulitan membaca, mereka dapat 
+membenturkan kata tersebut ke dinding layar untuk memecahnya menjadi suku kata yang lebih kecil. 
+Modul 3: Zona 
+Konstruksi
+ 
+Kalimat
+ (The Gravity Quiz)
+Konsep
+:
+ 
+Evaluasi
+ 
+interaktif
+ 
+tidak
+ 
+menggunakan
+ format 
+pilihan
+ 
+ganda
+ 
+konvensional
+. 
+Layar
+ 
+akan
+ 
+menjatuhkan
+ kata-kata 
+acak
+ 
+berbahasa
+ Arab. 
+Interaksi
+:
+ 
+Pengguna
+ 
+bertugas
+ 
+melawan
+ 
+gravitasi
+. Mereka 
+harus
+ 
+menangkap
+ kata-kata yang 
+berjatuhan
+ dan 
+menyusunnya
+ di 
+atas
+ 
+sebuah
+ "
+rak
+ virtual" 
+untuk
+ 
+membentuk
+ 
+kalimat
+ 
+qirā'ah
+ yang 
+sesuai
+ 
+dengan
+ 
+kaidah
+ 
+tarkib
+.
+Validasi
+ Real-Time:
+ 
+Evaluasi
+ 
+diproses
+ 
+secara
+ 
+langsung
+ 
+menggunakan
+ 
+skrip
+ JavaScript. Jika 
+susunan
+ kata 
+benar
+, 
+balok-balok
+ kata 
+tersebut
+ 
+akan
+ 
+menyatu
+, 
+berubah
+ 
+warna
+, dan terbang 
+ke
+ 
+atas
+ 
+layar
+ (anti-
+gravitasi
+). Jika salah 
+susun
+, 
+rak
+ 
+akan
+ miring dan 
+menjatuhkan
+ kata-kata 
+tersebut
+ 
+kembali
+ 
+ke
+ 
+bawah
+, 
+memberikan
+ 
+umpan
+ 
+balik
+ 
+instan
+ 
+atas
+ 
+jawaban
+ 
+pengguna
+. 

@@ -1,0 +1,52 @@
+﻿BLUEPRINT APLIKASI QIRĀ'AH "TAMRIN-UL-LUGHAH": EDISI KINETIK & NIRGRAVITASI
+A. Arsitektur Mesin Fisika (Fasad Teknologi)
+Aplikasi ini mendobrak tata letak halaman web yang statis dengan mengubah Document Object Model (DOM) menjadi arena bermain kinetik.
+Ruang Hampa HTML5: 
+Berfungsi sebagai kanvas atau dimensi utama tempat seluruh aktivitas pembelajaran berlangsung.
+Physics Engine (Mesin Fisika) Berbasis JavaScript: 
+Menggantikan navigasi klik konvensional. Skrip ini memberikan gaya tarik bumi (gravitasi), pantulan (restitution), dan gesekan (friction) pada setiap kosakata Arab.
+Penyimpanan Momentum (Web Storage): 
+Menyimpan "koordinat terakhir" pemahaman pengguna serta akumulasi poin (massa nilai) secara lokal tanpa memerlukan server eksternal.
+B. Modul Pembelajaran: Mekanika "Tamrin-ul-Lughah"
+Setiap materi dari kitab dasar bahasa Arab ini diubah menjadi objek fisik yang bereaksi terhadap sentuhan pengguna, memfasilitasi transisi kognitif melalui manipulasi objek secara langsung.
+Modul 1: Orbit Kosakata (Al-Mufradat wa Al-Suwar)
+Mekanika: 
+Menggunakan gaya tanpa gravitasi (Zero Gravity). Kartu-kartu bergambar (berbentuk layaknya foto polaroid retro dengan warna cinematic) melayang dalam orbit yang lambat di layar.
+Interaksi: 
+Saat pengguna menyentuh satu kartu polaroid yang melayang, sistem mengaktifkan gaya sentripetal sesaat. Kartu akan memutar secara 3D, menampilkan kosakata bahasa Arab, dan memancarkan gelombang audio pelafalan (makhraj).
+Modul 2: Tumbukan Sintaksis (At-Tarakib)
+Mekanika: 
+Implementasi utama Antigravity. Saat pengguna memasuki laman ini, susunan kalimat di layar tiba-tiba "runtuh" dan jatuh menumpuk di dasar layar akibat gaya gravitasi.
+Interaksi (Kinetic Drag-and-Toss): 
+Pengguna harus meraih balok-balok kata tersebut dan melemparnya ke udara. Untuk menjawab kuis susunan kalimat (misal: menyandingkan Mubtada' dan Khabar), pengguna harus membenturkan (collide) balok kata yang tepat.
+Respon Fisika: 
+Jika benturan tata bahasa (nahu) tersebut benar, balok akan menyatu, menghasilkan suara denting spasial, dan meledak menjadi partikel cahaya menggunakan elemen <canvas>.
+Modul 3: Navigasi Panduan (Al-Qirā'ah Al-Mutashilah)
+Mekanika: 
+Teks bacaan utuh dari Tamrin-ul-Lughah ditampilkan. Fitur Read-Along bertindak sebagai "gelombang pemindai".
+Interaksi: 
+Warna sorotan kata (highlight) bergerak dinamis mengikuti ketukan audio. Seiring meningkatnya level pengguna, gaya bantuan panduan ini akan mengalami penguapan (evaporate/fade out), memaksa peserta didik membaca mandiri berbekal insting dan memori.
+C. Laman Utama (Titik Nol / Singularity)
+Ini adalah Landing Page atau gerbang awal di mana pengguna pertama kali merasakan runtuhnya gravitasi digital antarmuka aplikasi.
+Event Horizon (Bagian Pembuka): 
+Begitu aplikasi dibuka, elemen-elemen judul utama (seperti tombol dan teks "Qirā'ah Kinetik") terlepas, melayang bebas secara acak, sebelum akhirnya berkumpul membentuk formasi utuh saat kursor pengguna mendekat.
+Visi & Misi Kinetik:
+Visi: 
+Membebaskan teks pembelajaran bahasa Arab dari belenggu buku cetak dua dimensi menuju ruang manipulasi fisik digital tanpa batas.
+Misi: 
+Menggabungkan kekuatan kurikulum Tamrin-ul-Lughah dengan simulasi fisika responsif untuk menciptakan pengalaman belajar yang melibatkan indera perabaan (sentuhan digital), visual spasial, dan audiotori.
+Pusat Komando (Kredit Pengembang):
+Layaknya susunan rasi bintang, profil tim pengembang tersemat secara elegan.
+Arsitek Kinetik (Penyusun): 
+Muhammad Faisal Yahya Prabowo.
+Sektor Akademik: 
+Program Studi Pendidikan Bahasa Arab.
+Pengawas Orbit (Dosen Pengampu): 
+Ust. Assoc. Prof. Dr. Moh. Ismail, M.Pd.I.
+Afiliasi Stasiun (Instansi): 
+Universitas Darussalam Gontor.
+D. Atmosfer Audiotori & Estetika (Sensorik)
+Suara Berbasis Massa (Mass-based Audio): 
+Setiap balok kosakata yang jatuh atau saling berbenturan akan menghasilkan suara yang berbeda berdasarkan berat atau panjang hurufnya. Kosakata yang panjang akan terdengar berat saat jatuh ke dasar layar.
+Ambient Soundscape: 
+Latar belakang modul tidak sunyi. Saat membahas bab Fils-Suuqi (Di Pasar), pengguna akan mendengar dengung keramaian pasar analog yang lembut dari kejauhan, sehingga suasana menjadi imajinatif dan tidak menjemukan.

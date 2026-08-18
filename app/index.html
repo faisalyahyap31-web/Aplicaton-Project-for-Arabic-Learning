@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="html-root">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="appTitle">Smart Muthala'ah ID — تَعَلُّمُ الْمُطَالَعَة</title>
+    <meta name="description" content="Aplikasi pembelajaran Muthala'ah bahasa Arab interaktif untuk siswa MTs/SMP. Fitur: teks interaktif, kuis evaluasi, flashcard mufradat, dan statistik kemajuan.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════
+     WORD MODAL
+══════════════════════════════════════════════════ -->
+<div id="word-modal" class="modal-overlay" onclick="app.closeWordModal(event)">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h3 id="modal-word-title" class="modal-word"></h3>
+            <button class="modal-close-btn" onclick="app.closeWordModal(null, true)" title="Tutup">✕</button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-def-row">
+                <span class="def-label" data-i18n="wordArLabel">MAKNA (ARAB)</span>
+                <span id="modal-def-ar" class="def-value" dir="rtl"></span>
+            </div>
+            <div class="modal-def-row">
+                <span class="def-label" data-i18n="wordIdLabel">MAKNA (INDONESIA)</span>
+                <span id="modal-def-id" class="def-value" dir="ltr"></span>
+            </div>
+            <div class="modal-def-row">
+                <span class="def-label" data-i18n="wordEnLabel">MEANING (ENGLISH)</span>
+                <span id="modal-def-en" class="def-value" dir="ltr"></span>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-listen" onclick="app.speakWord(document.getElementById('modal-word-title').innerText)">
+                <i class="fa-solid fa-volume-high"></i>
+                <span data-i18n="btnListen">Dengar</span>
+            </button>
+            <button class="btn-close-modal" onclick="app.closeWordModal(null, true)">
+                <i class="fa-solid fa-xmark"></i>
+                <span data-i18n="btnClose">Tutup</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     APP WRAPPER
+══════════════════════════════════════════════════ -->
+<div class="app-wrapper">
+
+    <!-- ── HEADER ── -->
+    <header class="app-header" id="app-header">
+        <div class="window-controls">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+        </div>
+
+        <div class="app-title">
+            <i class="fa-solid fa-book-open-reader"></i>
+            <span data-i18n="appTitle">Smart Muthala'ah ID</span>
+        </div>
+
+        <div class="header-right">
+            <!-- Language Switcher -->
+            <div class="lang-switcher" role="group" aria-label="Pilih Bahasa">
+                <button class="btn-lang active" id="btn-lang-ar" onclick="app.setLang('ar')" aria-pressed="true">العربية</button>
+                <button class="btn-lang" id="btn-lang-id" onclick="app.setLang('id')" aria-pressed="false">Indonesia</button>
+                <button class="btn-lang" id="btn-lang-en" onclick="app.setLang('en')" aria-pressed="false">English</button>
+            </div>
+            <!-- User status -->
+            <div class="user-status" id="header-status">
+                <i class="fa-solid fa-user-xmark"></i>
+                <span data-i18n="statusLoggedOut">Belum Login</span>
+            </div>
+            <!-- Login button (shown when not logged in) -->
+            <button class="btn-header-login" id="btn-header-login" onclick="app.showPage('login')">
+                <i class="fa-solid fa-key"></i>
+                <span data-i18n="btnLogin">Masuk</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ── BODY ── -->
+    <div class="app-body">
+
+        <!-- ── SIDEBAR ── -->
+        <aside class="sidebar" id="app-sidebar">
+            <div class="user-profile">
+                <div class="avatar"><i class="fa-solid fa-user-graduate"></i></div>
+                <h3 id="sidebar-name" data-i18n="guestUser">Tamu</h3>
+                <p id="sidebar-role" data-i18n="guestRole">Silakan login</p>
+                <!-- Overall progress -->
+                <div class="sidebar-progress" id="sidebar-progress" style="display:none;">
+                    <div class="sidebar-progress-label">
+                        <span data-i18n="progressLabel">Kemajuan Belajar</span>
+                        <span id="sidebar-progress-pct">0%</span>
+                    </div>
+                    <div class="progress-bar-track">
+                        <div class="progress-bar-fill" id="sidebar-progress-fill" style="width:0%"></div>
+                    </div>
+                </div>
+                <button class="btn-logout" id="btn-logout" onclick="app.logout()" style="display:none;" data-i18n="btnLogout">
+                    Keluar
+                </button>
+            </div>
+
+            <div class="nav-section">
+                <h4 data-i18n="navSectionTitle">NAVIGASI</h4>
+                <nav class="sidebar-nav" role="navigation">
+                    <a href="#" class="nav-item active" id="nav-login" onclick="app.showPage('login'); return false;">
+                        <i class="fa-solid fa-key"></i>
+                        <span data-i18n="navAuth">Autentikasi</span>
+                    </a>
+                    <a href="#" class="nav-item disabled" id="nav-dashboard" onclick="app.showPage('dashboard'); return false;">
+                        <i class="fa-solid fa-house"></i>
+                        <span data-i18n="navDashboard">Beranda</span>
+                    </a>
+                    <a href="#" class="nav-item disabled" id="nav-materi" onclick="app.showPage('materi'); return false;">
+                        <i class="fa-solid fa-list-ul"></i>
+                        <span data-i18n="navMateri">Daftar Materi</span>
+                    </a>
+                    <a href="#" class="nav-item disabled" id="nav-belajar" onclick="app.showPage('belajar'); return false;">
+                        <i class="fa-solid fa-book-open-reader"></i>
+                        <span data-i18n="navBelajar">Ruang Belajar</span>
+                    </a>
+                    <a href="#" class="nav-item disabled" id="nav-mufradat" onclick="app.showPage('mufradat'); return false;">
+                        <i class="fa-solid fa-language"></i>
+                        <span data-i18n="navMufradat">Latihan Mufradat</span>
+                    </a>
+                    <a href="#" class="nav-item disabled" id="nav-quiz" onclick="app.showPage('quiz'); return false;">
+                        <i class="fa-solid fa-clipboard-question"></i>
+                        <span data-i18n="navQuiz">Kuis Evaluasi</span>
+                    </a>
+                    <a href="#" class="nav-item disabled" id="nav-skor" onclick="app.showPage('skor'); return false;">
+                        <i class="fa-solid fa-trophy"></i>
+                        <span data-i18n="navSkor">Skor & Sertifikat</span>
+                    </a>
+                    <a href="#" class="nav-item disabled" id="nav-statistik" onclick="app.showPage('statistik'); return false;">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span data-i18n="navStatistik">Statistik Kemajuan</span>
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- ── MAIN CONTENT ── -->
+        <main class="main-content" id="main-content">
+            <div class="content-wrapper">
+
+                <!-- ════════════════════════════════════
+                     PAGE: LOGIN / REGISTER
+                ════════════════════════════════════ -->
+                <div id="page-login" class="page-section active">
+                    <div class="auth-container">
+                        <div class="auth-logo">
+                            <div class="logo-icon"><i class="fa-solid fa-book-open-reader"></i></div>
+                            <h1 data-i18n="authBrand">Smart Muthala'ah ID</h1>
+                            <p data-i18n="authTagline">Platform Pembelajaran Bahasa Arab Interaktif</p>
+                        </div>
+
+                        <div class="auth-toggle">
+                            <button class="btn-toggle active" id="tab-login" onclick="app.switchAuthTab('login')" data-i18n="loginTabLogin">Masuk</button>
+                            <button class="btn-toggle" id="tab-register" onclick="app.switchAuthTab('register')" data-i18n="loginTabRegister">Daftar Akun</button>
+                        </div>
+
+                        <!-- Login Form -->
+                        <div class="form-card" id="form-login-card">
+                            <div class="form-header">
+                                <span class="form-badge"><i class="fa-solid fa-shield-halved"></i> <span data-i18n="loginBadge">Masuk ke Akun</span></span>
+                                <h2 data-i18n="loginTitle">Selamat Datang!</h2>
+                                <p data-i18n="loginDesc">Masukkan identitas Anda untuk mengakses materi pembelajaran.</p>
+                            </div>
+                            <form id="login-form" onsubmit="event.preventDefault(); app.doLogin();" novalidate>
+                                <div class="form-group">
+                                    <label for="login-nim"><i class="fa-solid fa-user"></i> <span data-i18n="loginNimLabel">Nomor Identitas / NIM / NIS</span></label>
+                                    <input type="text" id="login-nim" autocomplete="username" placeholder="Masukkan NIM / NIS Anda" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="login-pass"><i class="fa-solid fa-lock"></i> <span data-i18n="loginPassLabel">Kata Sandi</span></label>
+                                    <input type="password" id="login-pass" autocomplete="current-password" placeholder="••••••••" required>
+                                </div>
+                                <button type="submit" class="btn-submit">
+                                    <i class="fa-solid fa-right-to-bracket"></i>
+                                    <span data-i18n="loginSubmit">Masuk ke Sistem</span>
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Register Form -->
+                        <div class="form-card" id="form-register-card" style="display:none;">
+                            <div class="form-header">
+                                <span class="form-badge" style="background:var(--secondary-container);color:var(--on-secondary-container);">
+                                    <i class="fa-solid fa-user-plus"></i> <span data-i18n="regBadge">Buat Akun Baru</span>
+                                </span>
+                                <h2 data-i18n="regTitle">Daftar Sekarang</h2>
+                                <p data-i18n="regDesc">Buat akun untuk menyimpan progres dan riwayat belajar Anda.</p>
+                            </div>
+                            <form id="register-form" onsubmit="event.preventDefault(); app.doRegister();" novalidate>
+                                <div class="form-group">
+                                    <label for="reg-nim"><i class="fa-solid fa-id-card"></i> <span data-i18n="regNimLabel">Nomor Identitas (NIM / NIS)</span></label>
+                                    <input type="text" id="reg-nim" autocomplete="username" placeholder="Nomor unik identitas Anda" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="reg-name"><i class="fa-solid fa-user"></i> <span data-i18n="regNameLabel">Nama Lengkap</span></label>
+                                    <input type="text" id="reg-name" autocomplete="name" placeholder="Nama sesuai identitas" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="reg-pass"><i class="fa-solid fa-lock"></i> <span data-i18n="regPassLabel">Kata Sandi</span></label>
+                                    <input type="password" id="reg-pass" autocomplete="new-password" placeholder="Min. 6 karakter" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="reg-role"><i class="fa-solid fa-user-tag"></i> <span data-i18n="regRoleLabel">Peran Pengguna</span></label>
+                                    <select id="reg-role">
+                                        <option value="Siswa (MTs/SMP)">Siswa (MTs/SMP)</option>
+                                        <option value="Mahasiswa (PBA)">Mahasiswa (PBA)</option>
+                                        <option value="Guru / Dosen">Guru / Dosen</option>
+                                        <option value="Umum">Umum</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn-submit register">
+                                    <i class="fa-solid fa-user-check"></i>
+                                    <span data-i18n="regSubmit">Daftar Sekarang</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ════════════════════════════════════
+                     PAGE: BERANDA / DASHBOARD
+                ════════════════════════════════════ -->
+                <div id="page-dashboard" class="page-section">
+                    <!-- Hero -->
+                    <div class="dashboard-hero">
+                        <h2><span data-i18n="dashWelcome">Ahlan wa Sahlan,</span> <span id="dash-name"></span>! 🌟</h2>
+                        <p data-i18n="dashDesc">Pilih aktivitas pembelajaran Anda hari ini.</p>
+                        <div class="hero-stats" id="hero-stats">
+                            <div class="hero-stat-chip" id="chip-materi-done">
+                                <i class="fa-solid fa-book-open"></i>
+                                <span id="chip-materi-num">0</span> <span data-i18n="chipMateri">Materi Dibuka</span>
+                            </div>
+                            <div class="hero-stat-chip" id="chip-quiz-done">
+                                <i class="fa-solid fa-trophy"></i>
+                                <span id="chip-quiz-num">0</span> <span data-i18n="chipQuiz">Kuis Selesai</span>
+                            </div>
+                            <div class="hero-stat-chip" id="chip-avg-score">
+                                <i class="fa-solid fa-star"></i>
+                                <span data-i18n="chipAvg">Rata-rata:</span> <span id="chip-avg-num">—</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick stats -->
+                    <p class="section-title"><i class="fa-solid fa-grid-2"></i> <span data-i18n="sectionMenu">Menu Utama</span></p>
+                    <div class="cards-container">
+                        <div class="dash-card" onclick="app.showPage('materi')" id="card-materi">
+                            <div class="dash-card-icon green"><i class="fa-solid fa-book-open"></i></div>
+                            <h3 data-i18n="cardMaterTitle">Daftar Materi</h3>
+                            <p data-i18n="cardMaterDesc">Pilih teks bacaan Muthala'ah</p>
+                            <button class="btn-dash-action" data-i18n="btnOpenModule">Buka Materi</button>
+                        </div>
+                        <div class="dash-card" onclick="app.showPage('mufradat')" id="card-mufradat">
+                            <div class="dash-card-icon teal"><i class="fa-solid fa-language"></i></div>
+                            <h3 data-i18n="cardMufrTitle">Latihan Mufradat</h3>
+                            <p data-i18n="cardMufrDesc">Kartu kosakata Arab interaktif</p>
+                            <button class="btn-dash-action" data-i18n="btnStartDrill">Mulai Latihan</button>
+                        </div>
+                        <div class="dash-card" onclick="app.showPage('quiz')" id="card-quiz">
+                            <div class="dash-card-icon gold"><i class="fa-solid fa-clipboard-list"></i></div>
+                            <h3 data-i18n="cardQuizTitle">Kuis Evaluasi</h3>
+                            <p data-i18n="cardQuizDesc">Uji pemahaman Anda</p>
+                            <button class="btn-dash-action" data-i18n="btnTakeQuiz">Ikuti Kuis</button>
+                        </div>
+                        <div class="dash-card" onclick="app.showPage('statistik')" id="card-statistik" style="grid-column: span 3;">
+                            <div class="dash-card-icon blue"><i class="fa-solid fa-chart-line"></i></div>
+                            <h3 data-i18n="cardStatTitle">Statistik Kemajuan</h3>
+                            <p data-i18n="cardStatDesc">Pantau perkembangan belajar Anda</p>
+                            <button class="btn-dash-action" data-i18n="btnViewStat">Lihat Statistik</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ════════════════════════════════════
+                     PAGE: DAFTAR MATERI
+                ════════════════════════════════════ -->
+                <div id="page-materi" class="page-section">
+                    <div class="page-header">
+                        <div class="page-badge"><i class="fa-solid fa-list-ul"></i> <span data-i18n="materBadge">Perpustakaan Materi</span></div>
+                        <h2 data-i18n="materHeading">Daftar Materi Bacaan</h2>
+                        <p data-i18n="materDesc">Pilih teks Muthala'ah untuk memulai sesi belajar interaktif.</p>
+                    </div>
+                    <div class="materi-tabs">
+                        <button class="btn-tab active" id="tab-k2" onclick="app.renderMateriList('kelas2')" data-i18n="btnKelas2">Kelas 2 (VIII)</button>
+                        <button class="btn-tab" id="tab-k3" onclick="app.renderMateriList('kelas3')" data-i18n="btnKelas3">Kelas 3 (IX)</button>
+                    </div>
+                    <div class="list-container" id="materi-list"></div>
+                </div>
+
+                <!-- ════════════════════════════════════
+                     PAGE: RUANG BELAJAR INTERAKTIF
+                ════════════════════════════════════ -->
+                <div id="page-belajar" class="page-section">
+                    <div class="read-header">
+                        <button class="btn-back" onclick="app.showPage('materi')">
+                            <i class="fa-solid fa-arrow-right"></i>
+                            <span data-i18n="btnBack">Kembali</span>
+                        </button>
+                        <h2 id="read-title" class="arabic-title" dir="rtl">عُنْوَان</h2>
+                    </div>
+
+                    <div class="glass-panel">
+                        <div class="read-instructions">
+                            <i class="fa-solid fa-hand-pointer"></i>
+                            <span data-i18n="readInstruction">Ketuk kata Arab mana saja untuk melihat arti dan mendengar pelafalannya.</span>
+                        </div>
+                        <div id="read-text" class="interactive-text" dir="rtl"></div>
+                        <p id="read-translation" class="translation-text" dir="ltr"></p>
+                        <div class="audio-controls">
+                            <button class="btn-play" id="btn-play-audio" onclick="app.playAudio()">
+                                <i class="fa-solid fa-volume-high"></i>
+                                <span data-i18n="btnPlayAudio">Dengar Bacaan</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Kosakata Penting -->
+                    <div class="kosakata-panel" id="kosakata-panel" style="display:none;">
+                        <h4><i class="fa-solid fa-star"></i> <span data-i18n="kosakataTitle">Kosakata Penting</span></h4>
+                        <div class="kosakata-grid" id="kosakata-grid"></div>
+                    </div>
+
+                    <div class="hub-actions">
+                        <button class="btn-hub" onclick="app.showPage('quiz')">
+                            <i class="fa-solid fa-clipboard-question"></i>
+                            <span data-i18n="navQuiz">Kuis Evaluasi</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ════════════════════════════════════
+                     PAGE: LATIHAN MUFRADAT
+                ════════════════════════════════════ -->
+                <div id="page-mufradat" class="page-section">
+                    <div class="page-header">
+                        <div class="page-badge"><i class="fa-solid fa-language"></i> <span data-i18n="mufBadge">Kartu Kosakata</span></div>
+                        <h2 data-i18n="mufHeading">Latihan Mufradat</h2>
+                        <p data-i18n="mufDesc">Ketuk kartu untuk membaliknya dan melihat terjemahan.</p>
+                    </div>
+                    <div class="mufradat-filter" id="mufradat-filter">
+                        <button class="btn-filter active" id="filter-all" onclick="app.filterMufradat('all')" data-i18n="filterAll">Semua</button>
+                        <button class="btn-filter" id="filter-k2" onclick="app.filterMufradat('kelas2')" data-i18n="btnKelas2">Kelas 2</button>
+                        <button class="btn-filter" id="filter-k3" onclick="app.filterMufradat('kelas3')" data-i18n="btnKelas3">Kelas 3</button>
+                    </div>
+                    <div class="flashcards-grid" id="flashcards-container"></div>
+                </div>
+
+                <!-- ════════════════════════════════════
+                     PAGE: KUIS EVALUASI
+                ════════════════════════════════════ -->
+                <div id="page-quiz" class="page-section">
+                    <div class="page-header">
+                        <div class="page-badge"><i class="fa-solid fa-clipboard-question"></i> <span data-i18n="quizBadge">Evaluasi Pemahaman</span></div>
+                        <h2 data-i18n="quizHeading">Kuis Evaluasi</h2>
+                        <p data-i18n="quizDesc">Jawab semua soal untuk menguji pemahamanmu.</p>
+                    </div>
+
+                    <div class="quiz-info-banner" id="quiz-info-banner">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <span data-i18n="quizBased">Berdasarkan materi:</span>
+                        <strong id="quiz-materi-title" dir="rtl">—</strong>
+                    </div>
+
+                    <div class="quiz-progress-bar">
+                        <div class="quiz-progress-fill" id="quiz-progress-fill" style="width:0%"></div>
+                    </div>
+
+                    <div id="quiz-no-materi" style="text-align:center; padding:40px 20px; color:var(--on-surface-variant); display:none;">
+                        <i class="fa-solid fa-triangle-exclamation" style="font-size:2.5rem; color:var(--gold); margin-bottom:14px; display:block;"></i>
+                        <p data-i18n="quizNoMateri">Pilih materi bacaan terlebih dahulu, lalu kembali ke sini untuk mengikuti kuis.</p>
+                        <button class="btn-hub" style="margin-top:18px;" onclick="app.showPage('materi')">
+                            <i class="fa-solid fa-list-ul"></i> <span data-i18n="navMateri">Daftar Materi</span>
+                        </button>
+                    </div>
+
+                    <form id="quiz-form" onsubmit="event.preventDefault(); app.submitQuiz();" novalidate>
+                        <div id="quiz-questions"></div>
+                        <div id="quiz-submit-area" style="text-align:center; margin-top:28px; display:none;">
+                            <button type="submit" class="btn-submit" style="max-width:380px;">
+                                <i class="fa-solid fa-check-double"></i>
+                                <span data-i18n="btnSubmitQuiz">Kumpulkan Jawaban</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- ════════════════════════════════════
+                     PAGE: SKOR & SERTIFIKAT
+                ════════════════════════════════════ -->
+                <div id="page-skor" class="page-section">
+                    <div class="page-header">
+                        <div class="page-badge"><i class="fa-solid fa-trophy"></i> <span data-i18n="skorBadge">Hasil Evaluasi</span></div>
+                        <h2 data-i18n="skorHeading">Skor & Sertifikat</h2>
+                        <p data-i18n="skorDesc">Berikut hasil evaluasi kuis Anda.</p>
+                    </div>
+
+                    <div class="certificate-wrapper">
+                        <!-- Score Ring -->
+                        <div class="score-ring-container" id="score-ring-container">
+                            <div class="score-ring-wrapper">
+                                <svg class="score-ring-svg" viewBox="0 0 140 140" aria-hidden="true">
+                                    <circle class="score-ring-bg" cx="70" cy="70" r="60"/>
+                                    <circle class="score-ring-fill" id="score-ring-fill" cx="70" cy="70" r="60"/>
+                                </svg>
+                                <div class="score-ring-text">
+                                    <div class="score-ring-num" id="cert-score">0</div>
+                                    <div class="score-ring-label" data-i18n="scoreLabel">/ 100</div>
+                                </div>
+                            </div>
+                            <div class="cert-user-name" id="cert-name">—</div>
+                            <div class="cert-user-info">
+                                <span data-i18n="certNim">NIM/NIS:</span> <span id="cert-nim"></span> ·
+                                <span id="cert-role"></span>
+                            </div>
+                            <div class="cert-materi-tag" id="cert-materi-tag">
+                                <i class="fa-solid fa-book-open"></i>
+                                <span id="cert-materi-name" dir="rtl">—</span>
+                            </div>
+                        </div>
+
+                        <!-- Score breakdown -->
+                        <div class="score-breakdown">
+                            <div class="breakdown-title">
+                                <i class="fa-solid fa-chart-bar"></i>
+                                <span data-i18n="breakdownTitle">Rincian Nilai</span>
+                            </div>
+                            <div class="breakdown-grid">
+                                <div class="breakdown-item">
+                                    <div class="breakdown-num" id="bd-mcq">0</div>
+                                    <div class="breakdown-label" data-i18n="bdMcq">Pilihan Ganda<br>Benar</div>
+                                </div>
+                                <div class="breakdown-item">
+                                    <div class="breakdown-num" id="bd-essay">0</div>
+                                    <div class="breakdown-label" data-i18n="bdEssay">Uraian<br>Terisi</div>
+                                </div>
+                                <div class="breakdown-item">
+                                    <div class="breakdown-num" id="bd-mufradat">0</div>
+                                    <div class="breakdown-label" data-i18n="bdMuf">Mufradat<br>Tepat</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Evaluation panel -->
+                        <div class="evaluation-panel">
+                            <h3><i class="fa-solid fa-lightbulb"></i> <span data-i18n="evalTitle">Rekomendasi & Saran</span></h3>
+                            <div id="eval-recommendation" class="eval-content" data-i18n="evalDefault">
+                                Selesaikan kuis terlebih dahulu untuk mendapatkan analisis personal.
+                            </div>
+                        </div>
+
+                        <!-- Retry/continue buttons -->
+                        <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
+                            <button class="btn-hub" onclick="app.showPage('materi')">
+                                <i class="fa-solid fa-list-ul"></i>
+                                <span data-i18n="btnNextMateri">Materi Lain</span>
+                            </button>
+                            <button class="btn-hub" onclick="app.showPage('statistik')" style="background:var(--secondary);">
+                                <i class="fa-solid fa-chart-line"></i>
+                                <span data-i18n="btnViewStat">Lihat Statistik</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ════════════════════════════════════
+                     PAGE: STATISTIK KEMAJUAN
+                ════════════════════════════════════ -->
+                <div id="page-statistik" class="page-section">
+                    <div class="page-header">
+                        <div class="page-badge"><i class="fa-solid fa-chart-line"></i> <span data-i18n="statBadge">Kemajuan Belajar</span></div>
+                        <h2 data-i18n="statHeading">Statistik Kemajuan Siswa</h2>
+                        <p data-i18n="statDesc">Pantau perkembangan belajar Anda dari waktu ke waktu.</p>
+                    </div>
+
+                    <!-- Stat Tabs -->
+                    <div class="stat-tabs">
+                        <button class="stat-tab active" id="stab-overview" onclick="app.switchStatTab('overview')" data-i18n="statTabOverview">Ringkasan</button>
+                        <button class="stat-tab" id="stab-kategori" onclick="app.switchStatTab('kategori')" data-i18n="statTabKategori">Kategori</button>
+                        <button class="stat-tab" id="stab-grafik" onclick="app.switchStatTab('grafik')" data-i18n="statTabGrafik">Grafik</button>
+                    </div>
+
+                    <!-- Tab: Overview -->
+                    <div class="stat-panel active" id="stat-overview">
+                        <div class="stat-overview-grid">
+                            <div class="stat-card">
+                                <div class="stat-card-icon green"><i class="fa-solid fa-book-open"></i></div>
+                                <div class="stat-card-body">
+                                    <div class="stat-card-num" id="stat-total-materi">0</div>
+                                    <div class="stat-card-label" data-i18n="statTotalMateri">Materi Dipelajari</div>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-card-icon gold"><i class="fa-solid fa-trophy"></i></div>
+                                <div class="stat-card-body">
+                                    <div class="stat-card-num" id="stat-total-quiz">0</div>
+                                    <div class="stat-card-label" data-i18n="statTotalQuiz">Kuis Diselesaikan</div>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-card-icon blue"><i class="fa-solid fa-star"></i></div>
+                                <div class="stat-card-body">
+                                    <div class="stat-card-num" id="stat-avg-score">—</div>
+                                    <div class="stat-card-label" data-i18n="statAvgScore">Rata-rata Nilai</div>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-card-icon teal"><i class="fa-solid fa-language"></i></div>
+                                <div class="stat-card-body">
+                                    <div class="stat-card-num" id="stat-total-mufradat">0</div>
+                                    <div class="stat-card-label" data-i18n="statTotalMuf">Kosakata Dipelajari</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="section-title" style="margin-bottom:14px;"><i class="fa-solid fa-list-check"></i> <span data-i18n="statProgress">Progres Per Materi</span></p>
+                        <div class="progress-list" id="progress-list">
+                            <div class="stat-empty">
+                                <i class="fa-solid fa-inbox"></i>
+                                <p data-i18n="statEmpty">Belum ada data. Selesaikan kuis untuk melihat progres.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab: Kategori -->
+                    <div class="stat-panel" id="stat-kategori">
+                        <div class="category-grid">
+                            <div class="category-card">
+                                <span class="cat-icon">📖</span>
+                                <div class="cat-title" data-i18n="catMcq">Pemahaman Teks</div>
+                                <div class="cat-score" id="cat-score-mcq">—</div>
+                                <div class="cat-label" data-i18n="catMcqLabel">Rata-rata pilihan ganda</div>
+                                <div class="prog-bar-track" style="margin-top:8px;">
+                                    <div class="prog-bar-fill high" id="cat-bar-mcq" style="width:0%"></div>
+                                </div>
+                            </div>
+                            <div class="category-card">
+                                <span class="cat-icon">✍️</span>
+                                <div class="cat-title" data-i18n="catEssay">Kemampuan Uraian</div>
+                                <div class="cat-score" id="cat-score-essay">—</div>
+                                <div class="cat-label" data-i18n="catEssayLabel">Rata-rata soal uraian</div>
+                                <div class="prog-bar-track" style="margin-top:8px;">
+                                    <div class="prog-bar-fill medium" id="cat-bar-essay" style="width:0%"></div>
+                                </div>
+                            </div>
+                            <div class="category-card">
+                                <span class="cat-icon">🃏</span>
+                                <div class="cat-title" data-i18n="catMuf">Kosakata Mufradat</div>
+                                <div class="cat-score" id="cat-score-muf">—</div>
+                                <div class="cat-label" data-i18n="catMufLabel">Rata-rata soal mufradat</div>
+                                <div class="prog-bar-track" style="margin-top:8px;">
+                                    <div class="prog-bar-fill high" id="cat-bar-muf" style="width:0%"></div>
+                                </div>
+                            </div>
+                            <div class="category-card">
+                                <span class="cat-icon">🏆</span>
+                                <div class="cat-title" data-i18n="catTotal">Nilai Keseluruhan</div>
+                                <div class="cat-score" id="cat-score-total">—</div>
+                                <div class="cat-label" data-i18n="catTotalLabel">Rata-rata semua kuis</div>
+                                <div class="prog-bar-track" style="margin-top:8px;">
+                                    <div class="prog-bar-fill high" id="cat-bar-total" style="width:0%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Rekomendasi per kategori -->
+                        <div class="evaluation-panel" id="cat-eval-panel">
+                            <h3><i class="fa-solid fa-lightbulb"></i> <span data-i18n="catRekomTitle">Rekomendasi Peningkatan</span></h3>
+                            <div id="cat-eval-content" class="eval-content" data-i18n="statEmpty">
+                                Selesaikan kuis terlebih dahulu untuk mendapatkan rekomendasi.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab: Grafik -->
+                    <div class="stat-panel" id="stat-grafik">
+                        <div class="bar-chart-container">
+                            <div class="bar-chart-title">
+                                <i class="fa-solid fa-chart-bar"></i>
+                                <span data-i18n="grafikTitle">Grafik Nilai per Materi</span>
+                            </div>
+                            <div class="bar-chart" id="bar-chart">
+                                <div class="stat-empty" style="width:100%;">
+                                    <i class="fa-solid fa-chart-bar"></i>
+                                    <p data-i18n="grafikEmpty">Belum ada data kuis untuk ditampilkan.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Trend summary -->
+                        <div class="glass-panel" id="trend-panel" style="display:none;">
+                            <p class="section-title"><i class="fa-solid fa-arrow-trend-up"></i> <span data-i18n="trendTitle">Tren Kemajuan</span></p>
+                            <div id="trend-content" class="eval-content"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /content-wrapper -->
+        </main>
+    </div><!-- /app-body -->
+
+    <!-- ── FOOTER ── -->
+    <footer class="app-footer">
+        <div class="breadcrumbs" aria-label="Langkah navigasi">
+            <span class="bc-item active" id="bc-login" data-i18n="bcAuth">① Login</span> ›
+            <span class="bc-item" id="bc-dashboard" data-i18n="bcDash">② Beranda</span> ›
+            <span class="bc-item" id="bc-materi" data-i18n="bcMater">③ Materi</span> ›
+            <span class="bc-item" id="bc-belajar" data-i18n="bcBelajar">④ Belajar</span> ›
+            <span class="bc-item" id="bc-quiz" data-i18n="bcQuiz">⑤ Kuis</span> ›
+            <span class="bc-item" id="bc-skor" data-i18n="bcSkor">⑥ Skor</span> ›
+            <span class="bc-item" id="bc-statistik" data-i18n="bcStat">⑦ Statistik</span>
+        </div>
+    </footer>
+
+</div><!-- /app-wrapper -->
+
+<script src="data.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

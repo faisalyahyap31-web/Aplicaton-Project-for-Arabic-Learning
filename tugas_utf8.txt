@@ -1,0 +1,1729 @@
+﻿MAKALAH
+PENGEMBANGAN MEDIA PEMBELAJARAN BAHASA ARAB
+PERANCANGAN MULTIMEDIA INTERAKTIF BERBASIS HTML5
+UNTUK PEMBELAJARAN QIRĀ'AH
+Disusun untuk memenuhi tugas mata kuliah
+Pengembangan Media Pembelajaran Bahasa Arab
+dengan tema "Pengembangan Media Berbasis Teknologi LMS, Aplikasi Mobile,
+dan Multimedia Interaktif"
+Disusun oleh:
+Muhammad Faisal Yahya Prabowo
+NIM: 
+452024121027
+Dosen Pengampu:
+Ust. Assoc. Prof. Dr. Moh. Ismail, 
+M.
+Pd.I
+PROGRAM STUDI PENDIDIKAN BAHASA ARAB
+FAKULTAS 
+TARBIYAH
+UNIVERSITAS DARUSSALAM GO
+NTOR
+202
+6 / 1448
+KATA PENGANTAR
+Puji dan syukur penulis panjatkan ke hadirat Allah SWT atas segala limpahan rahmat dan karunia-Nya sehingga makalah dengan judul "Perancangan Multimedia Interaktif Berbasis HTML5 untuk Pembelajaran Qirā'ah" ini dapat diselesaikan dengan baik. Sholawat serta salam senantiasa tercurah kepada Nabi Muhammad SAW, keluarga, sahabat, dan seluruh pengikutnya hingga akhir zaman.
+Makalah ini disusun untuk memenuhi tugas mata kuliah Pengembangan Media Pembelajaran Bahasa Arab dengan tema besar Pengembangan Media Berbasis Teknologi LMS, Aplikasi Mobile, dan Multimedia Interaktif. Secara khusus, makalah ini membahas bagaimana teknologi HTML5 dapat dimanfaatkan dalam merancang multimedia interaktif untuk mendukung pembelajaran kemahiran membaca teks Arab (qirā'ah).
+Penulis menyadari bahwa makalah ini masih jauh dari kesempurnaan, baik dari segi penyusunan bahasa maupun kedalaman analisisnya. Oleh karena itu, kritik dan saran yang membangun sangat penulis harapkan demi perbaikan pada penulisan selanjutnya. Penulis juga mengucapkan terima kasih kepada dosen pengampu mata kuliah yang telah memberikan bimbingan selama proses penyusunan makalah ini.
+Akhir kata, penulis berharap makalah ini dapat memberikan manfaat dan menambah wawasan bagi pembaca, khususnya terkait pengembangan media pembelajaran bahasa Arab berbasis teknologi web.
+Surabaya, Agustus 2026
+Penulis
+DAFTAR ISI
+KATA PENGANTAR
+i
+DAFTAR ISI
+ii
+BAB I PENDAHULUAN
+1
+A. Latar Belakang
+1
+B. Rumusan Masalah
+2
+C. Tujuan Penulisan
+2
+BAB II PEMBAHASAN
+3
+A. Media 
+Pembelajaran
+ 
+Berbasis
+ LMS, Aplikasi Mobile, dan Multimedia 
+Interaktif
+3
+B. 
+Pengertian
+ dan Sejarah 
+Singkat
+ HTML5
+4
+C. Karakteristik dan Fitur Utama HTML5
+5
+D. Relevansi HTML5 dalam Pembelajaran Qirā'ah
+6
+E. Perancangan Multimedia Interaktif Berbasis HTML5 untuk Qirā'ah
+7
+F. Purwarupa (Prototipe) Media
+8
+BAB III PENUTUP
+9
+A. Kesimpulan
+9
+B. Saran
+9
+DAFTAR PUSTAKA
+10
+BAB I
+PENDAHULUAN
+A. Latar 
+Belakang
+Perkembangan
+ 
+teknologi
+ 
+informasi
+ dan 
+komunikasi
+ 
+telah
+ 
+membawa
+ 
+perubahan
+ 
+besar
+ 
+dalam
+ dunia 
+pendidikan
+, 
+termasuk
+ 
+dalam
+ 
+pembelajaran
+ 
+bahasa
+ Arab. Media 
+pembelajaran
+ yang 
+sebelumnya
+ 
+bersifat
+ 
+konvensional
+, 
+seperti
+ 
+papan
+ 
+tulis
+, 
+buku
+ 
+cetak
+, dan 
+proyektor
+ 
+sederhana
+, 
+kini
+ 
+mulai
+ 
+bergeser
+ 
+ke
+ 
+arah
+ media 
+berbasis
+ 
+teknologi
+ digital yang 
+lebih
+ 
+interaktif
+. Haq (2023) 
+menegaskan
+ 
+bahwa
+ 
+pembelajaran
+ 
+bahasa
+ Arab di era digital 
+menghadapi
+ 
+berbagai
+ 
+problematika
+ yang 
+menuntut
+ 
+adanya
+ 
+inovasi
+ 
+dalam
+ 
+pengembangan
+ media 
+pembelajaran
+.
+Salah 
+satu
+ 
+keterampilan
+ 
+berbahasa
+ Arab yang 
+penting
+ 
+untuk
+ 
+dikuasai
+ 
+adalah
+ 
+maharah
+ 
+qira'ah
+ 
+atau
+ 
+kemahiran
+ 
+membaca
+. 
+Kemahiran ini tidak hanya menuntut kemampuan mengenali huruf dan harakat, tetapi juga ketepatan pelafalan (makhraj) serta pemahaman makna teks yang dibaca. Sayangnya, pembelajaran qira'ah di banyak lembaga pendidikan masih mengandalkan metode yang monoton, seperti membaca teks dari buku cetak tanpa disertai media pendukung yang interaktif (Izzah & Ma'sum, 2021).
+Di sisi lain, teknologi HTML5 hadir sebagai salah satu solusi teknis yang memungkinkan pengembangan media pembelajaran berbasis web dengan kemampuan multimedia yang jauh lebih kaya dibandingkan versi HTML sebelumnya. HTML5 mendukung pemutaran audio dan video secara langsung, animasi interaktif, penyimpanan data lokal, serta interaktivitas berbasis skrip, sehingga sangat potensial dikembangkan menjadi media pembelajaran qira'ah yang menggabungkan teks Arab, audio pelafalan, dan evaluasi interaktif dalam satu kesatuan (Adi Pratomo & Agus Irawan, 2015).
+Media semacam ini juga sejalan dengan tema besar pengembangan media pembelajaran berbasis teknologi LMS (Learning Management System), aplikasi mobile, dan multimedia interaktif, karena media berbasis HTML5 dapat dengan mudah disematkan ke dalam LMS maupun dibungkus menjadi aplikasi mobile. Berdasarkan latar belakang tersebut, penulis tertarik untuk membahas lebih lanjut mengenai perancangan multimedia interaktif berbasis HTML5 khusus untuk pembelajaran qira'ah dalam makalah ini.
+B. 
+Rumusan
+ 
+Masalah
+Apa yang 
+dimaksud
+ 
+dengan
+ HTML5 dan 
+bagaimana
+ 
+sejarah
+ 
+perkembangannya
+?
+Apa saja karakteristik dan fitur utama HTML5 yang relevan untuk pengembangan media pembelajaran?
+Bagaimana relevansi teknologi HTML5 terhadap pembelajaran qira'ah bahasa Arab?
+Bagaimana
+ 
+alur
+ 
+perancangan
+ multimedia 
+interaktif
+ 
+berbasis
+ HTML5 
+untuk
+ 
+pembelajaran
+ 
+qira'ah
+?
+C. Tujuan 
+Penulisan
+Mendeskripsikan pengertian dan sejarah singkat perkembangan HTML5.
+Menjelaskan karakteristik dan fitur utama HTML5 yang mendukung pengembangan media pembelajaran.
+Menganalisis relevansi teknologi HTML5 terhadap pembelajaran qira'ah bahasa Arab.
+Menguraikan alur perancangan multimedia interaktif berbasis HTML5 untuk pembelajaran qira'ah beserta contoh purwarupanya.
+BAB II
+PEMBAHASAN
+A. Media 
+Pembelajaran
+ 
+Berbasis
+ LMS, Aplikasi Mobile, dan Multimedia 
+Interaktif
+Media 
+pembelajaran
+ 
+berbasis
+ 
+teknologi
+ digital pada 
+dasarnya
+ 
+dapat
+ 
+dikelompokkan
+ 
+ke
+ 
+dalam
+ 
+tiga
+ 
+kategori
+ 
+besar
+ yang 
+saling
+ 
+melengkapi
+. 
+Pertama
+, Learning Management System (LMS) 
+merupakan
+ 
+perangkat
+ 
+lunak
+ yang 
+digunakan
+ 
+untuk
+ 
+mengelola
+, 
+mendistribusikan
+, dan 
+memantau
+ proses 
+pembelajaran
+ 
+secara
+ daring, 
+misalnya
+ Moodle 
+atau
+ Google Classroom. 
+Kedua, aplikasi mobile merupakan media pembelajaran yang dirancang khusus untuk diakses melalui perangkat telepon pintar. Ketiga, multimedia interaktif adalah media yang memadukan unsur teks, gambar, audio, video, dan animasi, yang memungkinkan penggunanya untuk berinteraksi secara langsung dengan materi yang disajikan (Surjono, 2017).
+Suryani dkk. (2018) menjelaskan bahwa media pembelajaran yang inovatif perlu dirancang dengan memperhatikan prinsip interaktivitas agar peserta didik tidak hanya berperan sebagai penerima informasi secara pasif, melainkan turut aktif dalam proses belajar. Prinsip inilah yang menjadi dasar penting dalam perancangan multimedia interaktif berbasis HTML5 yang dibahas dalam makalah ini, sebab HTML5 memungkinkan terciptanya media yang tidak hanya menyajikan informasi, tetapi juga memberi ruang bagi peserta didik untuk berinteraksi, berlatih, dan mendapatkan umpan balik secara langsung.
+B. 
+Pengertian
+ dan Sejarah 
+Singkat
+ HTML5
+HTML5 (
+HyperText
+ Markup Language 
+versi
+ 5) 
+adalah
+ 
+bahasa
+ 
+markah
+ yang 
+digunakan
+ 
+untuk
+ 
+menyusun
+ dan 
+menampilkan
+ 
+konten
+ pada 
+halaman
+ web, 
+sekaligus
+ 
+merupakan
+ 
+revisi
+ 
+kelima
+ 
+dari
+ 
+bahasa
+ HTML yang 
+pertama
+ kali 
+dikembangkan
+ oleh Tim Berners-Lee pada 
+tahun
+ 1991 (
+Rumahweb
+, 2025). HTML5 
+dikembangkan
+ oleh World Wide Web Consortium (W3C) 
+bekerja
+ 
+sama
+ 
+dengan
+ Web Hypertext Application Technology Working Group (WHATWG) 
+sebagai
+ 
+penyempurnaan
+ 
+atas
+ HTML4 dan XHTML yang 
+sebelumnya
+ 
+berjalan
+ 
+secara
+ 
+terpisah
+ (STEKOM, n.d.).
+Perkembangan
+ 
+standar
+ HTML5 
+dimulai
+ 
+sejak
+ 
+tahun
+ 2004, 
+ketika
+ WHATWG 
+mulai
+ 
+merumuskan
+ 
+spesifikasi
+ 
+baru
+ 
+bernama
+ Web Applications 1.0, pada 
+saat
+ W3C 
+masih
+ 
+berfokus
+ pada 
+pengembangan
+ XHTML 2.0. 
+Sejak
+ 
+tahun
+ 2009, W3C dan WHATWG 
+akhirnya
+ 
+bekerja
+ 
+sama
+ 
+secara
+ 
+resmi
+ 
+dalam
+ 
+pengembangan
+ HTML5 (
+Petanikode
+, 2020). 
+Popularitas
+ HTML5 
+semakin
+ 
+meningkat
+ 
+setelah
+ 
+tahun
+ 2010, 
+seiring
+ 
+dengan
+ 
+berkurangnya
+ 
+penggunaan
+ Adobe Flash 
+sebagai
+ 
+teknologi
+ 
+pemutar
+ multimedia di web. HTML5 
+secara
+ 
+resmi
+ 
+direkomendasikan
+ oleh W3C pada 
+tahun
+ 2014 
+sebagai
+ 
+standar
+ 
+baru
+ 
+menggantikan
+ HTML4.
+Tujuan 
+utama
+ 
+pengembangan
+ HTML5 
+adalah
+ 
+menghadirkan
+ 
+bahasa
+ 
+markah
+ yang 
+lebih
+ 
+mudah
+ 
+dibaca
+ oleh 
+manusia
+ 
+maupun
+ 
+dipahami
+ oleh 
+mesin
+, 
+serta
+ 
+mendukung
+ 
+kebutuhan
+ multimedia modern 
+tanpa
+ 
+bergantung
+ pada 
+perangkat
+ 
+lunak
+ 
+tambahan
+ (STEKOM, n.d.). 
+Dengan
+ 
+demikian
+, HTML5 
+tidak
+ 
+hanya
+ 
+berfungsi
+ 
+sebagai
+ 
+bahasa
+ 
+penyusun
+ 
+struktur
+ 
+halaman
+ web, 
+tetapi
+ juga 
+sebagai
+ 
+fondasi
+ 
+teknis
+ 
+untuk
+ 
+membangun
+ 
+aplikasi
+ web 
+interaktif
+, 
+termasuk
+ media 
+pembelajaran
+.
+C. Karakteristik dan Fitur Utama HTML5
+HTML5 memiliki sejumlah fitur baru yang tidak dimiliki oleh versi HTML sebelumnya, khususnya dalam hal dukungan terhadap konten multimedia dan interaktivitas. Fitur-fitur tersebut menjadikan HTML5 sangat sesuai untuk dikembangkan menjadi media pembelajaran, termasuk media pembelajaran bahasa Arab. Tabel berikut merangkum beberapa fitur utama HTML5 beserta fungsinya dalam konteks pengembangan media pembelajaran qira'ah.
+Elemen
+/Fitur
+Fungsi
+ Teknis
+Penerapan
+ 
+dalam
+ Media 
+Qira'ah
+<audio>, <video>
+Memutar
+ 
+berkas
+ 
+suara
+/video 
+secara
+ native 
+tanpa
+ plugin
+Memutar pelafalan huruf, kosakata, dan contoh bacaan
+<canvas>
+Menggambar
+ 
+grafik
+ dan 
+animasi
+ dua 
+dimensi
+ 
+secara
+ 
+dinamis
+Animasi cara penulisan huruf dan tanda baca (harakat)
+Elemen
+ 
+semantik
+Menyusun 
+struktur
+ 
+dokumen
+ 
+secara
+ 
+logis
+ (section, article, header)
+Menata unit 
+pembelajaran
+ 
+qira'ah
+ per 
+topik
+Web Storage
+Menyimpan
+ data pada 
+perangkat
+ 
+pengguna
+ 
+tanpa
+ server
+Menyimpan
+ 
+progres
+ dan 
+skor
+ 
+latihan
+ 
+siswa
+JavaScript/DOM API
+Memproses
+ 
+interaksi
+ 
+pengguna
+ 
+secara
+ real-time
+Kuis interaktif, umpan balik instan, penyorotan kata
+CSS3 
+responsif
+Menyesuaikan tata letak pada berbagai ukuran layar
+Akses media dari laptop maupun perangkat mobile
+Berdasarkan tabel tersebut, dapat dipahami bahwa HTML5 menyediakan seluruh komponen dasar yang dibutuhkan untuk membangun media pembelajaran multimedia interaktif secara mandiri, tanpa harus bergantung pada perangkat lunak berbayar atau plugin tambahan seperti Adobe Flash yang sudah tidak lagi didukung sejak tahun 2020.
+D. Relevansi HTML5 dalam Pembelajaran Qirā'ah
+Qira'ah merupakan salah satu dari empat maharah (keterampilan) dalam pembelajaran bahasa Arab yang menuntut kemampuan mengenali huruf, harakat, serta melafalkan dan memahami teks Arab dengan tepat. Rohman (2019) menjelaskan bahwa pengembangan media berbasis teknologi dalam pembelajaran qira'ah terbukti dapat meningkatkan motivasi dan pemahaman peserta didik dibandingkan dengan metode konvensional. Sejalan dengan hal tersebut, Nursa'adah dkk. (2025) turut menegaskan bahwa media pembelajaran qira'ah berbasis web yang memadukan teks bacaan, kosakata, terjemahan, dan kuis interaktif memberikan pengalaman belajar yang lebih efektif bagi peserta didik.
+Terdapat sekurang-kurangnya lima aspek pembelajaran qira'ah yang dapat difasilitasi dengan baik oleh teknologi HTML5, yaitu:
+Pengenalan
+ 
+huruf
+ dan harakat, yang 
+dapat
+ 
+divisualisasikan
+ 
+melalui
+ 
+animasi
+ 
+berbasis
+ 
+elemen
+ canvas.
+Latihan pelafalan (makhraj), dengan memanfaatkan elemen audio untuk memutar rekaman suara secara berulang.
+Latihan 
+membaca
+ 
+teks
+ 
+secara
+ 
+terbimbing
+ (read-along), 
+dengan
+ 
+fitur
+ 
+penyorotan
+ kata yang 
+berjalan
+ 
+mengikuti
+ audio.
+Evaluasi pemahaman melalui kuis interaktif berbasis skrip, seperti soal pilihan ganda atau mencocokkan kata.
+Pemberian umpan balik instan atas jawaban peserta didik tanpa perlu memuat ulang halaman.
+Kelima aspek tersebut menunjukkan bahwa HTML5 tidak sekadar menjadi alat penyaji teks statis, melainkan dapat berperan sebagai medium pembelajaran qira'ah yang aktif dan responsif terhadap interaksi peserta didik.
+E. 
+Perancangan
+ Multimedia 
+Interaktif
+ 
+Berbasis
+ HTML5 
+untuk
+ 
+Qirā'ah
+Perancangan
+ media 
+pembelajaran
+ 
+qira'ah
+ 
+berbasis
+ HTML5 
+dalam
+ 
+makalah
+ 
+ini
+ 
+mengikuti
+ lima 
+tahapan
+ 
+pengembangan
+ 
+sebagai
+ 
+berikut
+.
+1. 
+Analisis
+ 
+Kebutuhan
+Tahap
+ 
+ini
+ 
+bertujuan
+ 
+menentukan
+ 
+jenjang
+ 
+pembelajar
+ 
+serta
+ 
+materi
+ 
+qira'ah
+ yang 
+akan
+ 
+diangkat
+, 
+misalnya
+ 
+pengenalan
+ 
+huruf
+ 
+hijaiyah
+ 
+bagi
+ 
+pemula
+, 
+atau
+ 
+latihan
+ 
+membaca
+ 
+teks
+ 
+berjenjang
+ 
+bagi
+ 
+pembelajar
+ 
+tingkat
+ 
+lanjut
+.
+2. Desain 
+Antarmuka
+ (User Interface)
+Tahap
+ 
+ini
+ 
+mencakup
+ 
+perancangan
+ tata 
+letak
+ 
+teks
+ Arab 
+dengan
+ 
+arah
+ 
+baca
+ 
+dari
+ 
+kanan
+ 
+ke
+ kiri (right-to-left), 
+penempatan
+ 
+tombol
+ 
+kontrol
+ audio, 
+serta
+ 
+indikator
+ 
+kemajuan
+ 
+belajar
+ agar 
+antarmuka
+ 
+mudah
+ 
+digunakan
+ oleh 
+peserta
+ 
+didik
+.
+3. 
+Pengembangan
+ 
+Struktur
+ HTML5
+Tahap
+ 
+ini
+ 
+merupakan
+ 
+implementasi
+ 
+teknis
+, 
+meliputi
+ 
+penyusunan
+ 
+elemen
+ section 
+untuk
+ 
+setiap
+ unit 
+pelajaran
+, 
+elemen
+ audio 
+untuk
+ 
+pelafalan
+, 
+elemen
+ canvas 
+untuk
+ 
+animasi
+ 
+huruf
+, 
+serta
+ 
+skrip
+ JavaScript 
+untuk
+ 
+mengatur
+ 
+logika
+ 
+kuis
+ dan 
+penilaian
+.
+4. Integrasi 
+dengan
+ LMS
+Media yang 
+telah
+ 
+dikembangkan
+ 
+dapat
+ 
+diunggah
+ 
+ke
+ 
+dalam
+ LMS 
+dalam
+ 
+bentuk
+ 
+paket
+ SCORM 
+atau
+ 
+disematkan
+ (embed) 
+melalui
+ 
+iframe
+, 
+sehingga
+ 
+aktivitas
+ dan 
+progres
+ 
+belajar
+ 
+peserta
+ 
+didik
+ 
+dapat
+ 
+direkam
+ dan 
+dipantau
+ oleh 
+pengajar
+.
+5. Uji Coba dan 
+Evaluasi
+Tahap
+ 
+akhir
+ 
+ini
+ 
+memastikan
+ media 
+berjalan
+ 
+responsif
+ pada 
+berbagai
+ 
+perangkat
+, 
+mengingat
+ 
+peserta
+ 
+didik
+ 
+dapat
+ 
+mengakses
+ media 
+tersebut
+ 
+baik
+ 
+melalui
+ 
+komputer
+ 
+maupun
+ 
+telepon
+ 
+pintar
+.
+F. 
+Purwarupa
+ (
+Prototipe
+) Media
+Sebagai
+ 
+penerapan
+ 
+dari
+ 
+kerangka
+ 
+perancangan
+ di 
+atas
+, 
+penulis
+ 
+mengembangkan
+ 
+sebuah
+ 
+purwarupa
+ (
+prototipe
+) 
+sederhana
+ media multimedia 
+interaktif
+ 
+berbasis
+ HTML5 
+untuk
+ 
+pembelajaran
+ 
+qira'ah
+. 
+Purwarupa
+ 
+ini
+ 
+dibangun
+ 
+murni
+ 
+menggunakan
+ HTML5, CSS3, dan JavaScript 
+sehingga
+ 
+dapat
+ 
+dijalankan
+ 
+langsung
+ 
+melalui
+ 
+peramban
+ (browser) 
+tanpa
+ 
+memerlukan
+ 
+instalasi
+ 
+perangkat
+ 
+lunak
+ 
+tambahan
+. 
+Purwarupa
+ 
+tersebut
+ 
+terdiri
+ 
+atas
+ 
+tiga
+ 
+bagian
+ 
+utama
+, 
+yaitu
+:
+Pengenalan
+ 
+Huruf
+ 
+Hijaiyah
+ — 
+menampilkan
+ 
+kumpulan
+ 
+huruf
+ 
+hijaiyah
+ 
+dalam
+ 
+bentuk
+ 
+kartu
+ 
+interaktif
+ yang 
+dapat
+ 
+disentuh
+ 
+untuk
+ 
+memunculkan
+ 
+pelafalan
+ 
+suara
+ 
+serta
+ 
+contoh
+ kata 
+beserta
+ 
+artinya
+.
+Latihan 
+Membaca
+ 
+Terbimbing
+ (Read-Along) — 
+menyajikan
+ 
+sebuah
+ 
+kalimat
+ 
+sederhana
+ 
+berbahasa
+ Arab yang 
+dapat
+ 
+dibaca
+ kata per kata 
+beserta
+ 
+artinya
+, 
+atau
+ 
+dibacakan
+ 
+secara
+ 
+otomatis
+ 
+dengan
+ 
+penyorotan
+ kata yang 
+berjalan
+ 
+mengikuti
+ audio.
+Evaluasi
+ 
+Interaktif
+ — 
+berupa
+ 
+kuis
+ 
+pilihan
+ 
+ganda
+ 
+dengan
+ 
+umpan
+ 
+balik
+ 
+instan
+ 
+atas
+ 
+setiap
+ 
+jawaban
+, 
+serta
+ 
+rekapitulasi
+ 
+skor
+ pada 
+akhir
+ 
+sesi
+ 
+kuis
+.
+Purwarupa
+ 
+ini
+ 
+menjadi
+ 
+bukti
+ 
+konsep
+ (proof of concept) 
+bahwa
+ 
+teknologi
+ HTML5 
+dapat
+ 
+diimplementasikan
+ 
+secara
+ 
+nyata
+ 
+untuk
+ 
+membangun
+ media 
+pembelajaran
+ 
+qira'ah
+ yang 
+interaktif
+, 
+ringan
+, dan 
+mudah
+ 
+diakses
+ 
+lintas
+ 
+perangkat
+. Pada 
+tahap
+ 
+pengembangan
+ 
+produksi
+ yang 
+lebih
+ 
+lanjut
+, 
+elemen
+ audio 
+sintetis
+ pada 
+purwarupa
+ 
+ini
+ 
+dapat
+ 
+digantikan
+ 
+dengan
+ 
+rekaman
+ 
+suara
+ 
+qari
+ 
+atau
+ 
+pengajar
+ 
+asli
+ agar 
+ketepatan
+ 
+makhraj
+ 
+lebih
+ 
+terjamin
+, 
+serta
+ 
+dapat
+ 
+diintegrasikan
+ 
+langsung
+ 
+ke
+ 
+dalam
+ LMS yang 
+digunakan
+ oleh 
+lembaga
+ 
+pendidikan
+.
+BAB III
+PENUTUP
+A. Kesimpulan
+Berdasarkan
+ 
+pembahasan
+ yang 
+telah
+ 
+diuraikan
+, 
+dapat
+ 
+disimpulkan
+ 
+beberapa
+ 
+hal
+ 
+sebagai
+ 
+berikut
+. 
+Pertama
+, HTML5 
+merupakan
+ 
+revisi
+ 
+kelima
+ 
+dari
+ 
+bahasa
+ 
+markah
+ HTML yang 
+dikembangkan
+ oleh W3C 
+bersama
+ WHATWG, 
+dengan
+ 
+tujuan
+ 
+utama
+ 
+menghadirkan
+ 
+dukungan
+ multimedia yang 
+lebih
+ 
+baik
+ 
+tanpa
+ 
+bergantung
+ pada plugin 
+tambahan
+. 
+Kedua
+, HTML5 
+memiliki
+ 
+sejumlah
+ 
+fitur
+ 
+utama
+ 
+seperti
+ 
+elemen
+ audio, video, canvas, 
+penyimpanan
+ 
+lokal
+, 
+serta
+ 
+interaktivitas
+ 
+berbasis
+ JavaScript yang sangat 
+relevan
+ 
+untuk
+ 
+dikembangkan
+ 
+menjadi
+ media 
+pembelajaran
+.
+Ketiga
+, 
+teknologi
+ HTML5 
+memiliki
+ 
+relevansi
+ yang 
+tinggi
+ 
+terhadap
+ 
+pembelajaran
+ 
+qira'ah
+, 
+karena
+ 
+mampu
+ 
+memfasilitasi
+ 
+pengenalan
+ 
+huruf
+, 
+latihan
+ 
+pelafalan
+, 
+latihan
+ 
+membaca
+ 
+terbimbing
+, 
+evaluasi
+ 
+interaktif
+, 
+serta
+ 
+pemberian
+ 
+umpan
+ 
+balik
+ 
+instan
+. 
+Keempat
+, 
+perancangan
+ multimedia 
+interaktif
+ 
+berbasis
+ HTML5 
+untuk
+ 
+qira'ah
+ 
+dapat
+ 
+dilakukan
+ 
+melalui
+ lima 
+tahapan
+, 
+yaitu
+ 
+analisis
+ 
+kebutuhan
+, 
+desain
+ 
+antarmuka
+, 
+pengembangan
+ 
+struktur
+ HTML5, 
+integrasi
+ 
+dengan
+ LMS, 
+serta
+ uji 
+coba
+ dan 
+evaluasi
+. 
+Kelima
+, 
+purwarupa
+ yang 
+telah
+ 
+dikembangkan
+ 
+menunjukkan
+ 
+bahwa
+ 
+konsep
+ 
+tersebut
+ 
+dapat
+ 
+diimplementasikan
+ 
+secara
+ 
+nyata
+ dan 
+berpotensi
+ 
+untuk
+ 
+dikembangkan
+ 
+lebih
+ 
+lanjut
+ 
+menjadi
+ media 
+pembelajaran
+ 
+qira'ah
+ yang 
+utuh
+.
+B. Saran
+Penulis
+ 
+menyarankan
+ agar 
+pengembangan
+ media 
+pembelajaran
+ 
+qira'ah
+ 
+berbasis
+ HTML5 pada 
+tahap
+ 
+selanjutnya
+ 
+dilengkapi
+ 
+dengan
+ audio 
+rekaman
+ 
+asli
+ 
+dari
+ 
+qari
+ 
+atau
+ 
+pengajar
+ 
+bahasa
+ Arab, 
+dilakukan
+ uji 
+kelayakan
+ oleh 
+ahli
+ 
+materi
+ dan 
+ahli
+ media, 
+serta
+ 
+diujicobakan
+ 
+secara
+ 
+langsung
+ 
+kepada
+ 
+peserta
+ 
+didik
+ 
+untuk
+ 
+mengukur
+ 
+efektivitasnya
+ 
+terhadap
+ 
+peningkatan
+ 
+kemahiran
+ 
+qira'ah
+. Selain 
+itu
+, media 
+ini
+ juga 
+disarankan
+ 
+untuk
+ 
+diintegrasikan
+ 
+secara
+ 
+resmi
+ 
+ke
+ 
+dalam
+ LMS yang 
+digunakan
+ oleh 
+lembaga
+ 
+pendidikan
+ agar 
+progres
+ 
+belajar
+ 
+peserta
+ 
+didik
+ 
+dapat
+ 
+terpantau
+ 
+secara
+ 
+berkelanjutan
+.
+DAFTAR PUSTAKA
+Adi Pratomo, & Agus Irawan. (2015). 
+Pengembangan
+ media 
+pembelajaran
+ 
+interaktif
+ 
+berbasis
+ web 
+menggunakan
+ 
+metode
+ Hannafin dan Peck. 
+Jurnal
+ 
+Positif
+, 1(1).
+Haq, S. (2023). 
+Pembelajaran
+ 
+bahasa
+ Arab di era digital: 
+Problematika
+ dan 
+solusi
+ 
+dalam
+ 
+pengembangan
+ media. 
+Mukadimah
+: 
+Jurnal
+ Pendidikan, Sejarah, dan 
+Ilmu-Ilmu
+ 
+Sosial
+, 7(1).
+Izzah, M. A., & 
+Ma'sum
+, A. (2021). 
+Pengembangan
+ 
+komik
+ digital 
+sebagai
+ media 
+pembelajaran
+ 
+bahasa
+ Arab 
+maharah
+ 
+qira'ah
+ 
+untuk
+ 
+siswa
+ 
+kelas
+ X MA 
+Almaarif
+ 
+Singosari
+. Journal of Language Literature and Arts, 1(8), 1081–1094.
+Nursa'adah
+, D., Afifah, A., & Nurul Aini 
+Lathifah
+, S. (2025). 
+Pengembangan
+ media 
+pembelajaran
+ 
+berbasis
+ web 'MAHARA' 
+untuk
+ 
+meningkatkan
+ 
+keterampilan
+ 
+maharah
+ 
+qira'ah
+ 
+mahasiswa
+. Kartika: 
+Jurnal
+ Studi Keislaman, 5(3), 1787–1800.
+Petanikode
+. (2020). Sejarah dan 
+asal
+ 
+usul
+ HTML, XHTML, dan HTML5. 
+Diakses dari https://www.petanikode.com/sejarah-html/
+Rohman, H. (2019). Pengembangan media Construct 2 dalam pembelajaran qira'ah di Madrasah Tsanawiyah Negeri 1 Yogyakarta. Al Mahara: Jurnal Pendidikan Bahasa Arab, 4(2), 257–272.
+Rumahweb. (2025). HTML5: Pengertian, kelebihan, dan perbedaannya dengan HTML. Diakses dari https://www.rumahweb.com/journal/html5-adalah/
+Sanaky, H. A. (2013). Media pembelajaran interaktif-inovatif. Kaukaba Dipantara.
+STEKOM. (n.d.). HTML5. Universitas STEKOM Semarang. 
+Diakses dari https://p2k.stekom.ac.id/ensiklopedia/HTML5
+Surjono, H. D. (2017). Multimedia pembelajaran interaktif: Konsep dan pengembangan. UNY Press.
+Suryani, N., Setiawan, A., & Putria, A. (2018). Media pembelajaran inovatif dan pengembangannya. 
+Remaja
+ Rosdakarya.
+World Wide Web Consortium (W3C). (2014). HTML5 specification. 
+Diakses
+ 
+dari
+ https://www.w3.org/TR/html5/
